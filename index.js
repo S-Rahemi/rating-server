@@ -5,9 +5,7 @@ const helmet = require('helmet');
 const app = express();
 app.use(express.json());
 app.use(helmet({crossOriginEmbedderPolicy: false}));
-const ratings = [
-    {id:1,email:'admin@', comment:'', rate:4}
-];
+const ratings = [];
  app.get('/', (req,res)=>{
     res.send('Rating System V1.0');
 }); 
@@ -25,7 +23,7 @@ app.post('/api/rate',(req,res)=>{
     }
     if (!req.body.email) return res.status(400).send('bad request');
     const rate = {
-        id: ratings.length+1,
+        id: ratings.length,
         sessionId: req.body.sessionId,
         email: req.body.email,
         comment: req.body.comment,
